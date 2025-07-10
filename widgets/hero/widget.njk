@@ -1,0 +1,12 @@
+<section id="{{ widget.id }}" class="widget hero-widget">
+  <div class="container">
+    <h1 class="hero-title">{{ widget.data.title }}</h1>
+    <p class="hero-subtitle">{{ widget.data.subtitle }}</p>
+    {% if widget.data.image %}
+      <img class="hero-image" src="{{ widget.data.image }}" alt="Hero Image" />
+    {% endif %}
+    {% if widget.data.button_link %}
+      <a class="hero-button" href="{{ widget.data.button_link }}">{{ widget.data.button_text }}</a>
+    {% endif %}
+  </div>
+</section>

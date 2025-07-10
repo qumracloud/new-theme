@@ -1,0 +1,44 @@
+{% if widget.data.announcement_text %}
+  <div class="announcement-bar bg-gray-900 text-white text-sm py-2 text-center">
+    {{ widget.data.announcement_text }}
+  </div>
+{% endif %}
+
+<header class="header bg-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between py-4 px-6">
+    
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="{{ widget.data.logo }}" alt="Logo" class="h-10">
+      </a>
+    </div>
+
+    <!-- Menu -->
+    {% if widget.data.menu %}
+      <nav class="main-nav">
+        <ul class="flex space-x-6">
+          {% for item in widget.data.menu_items %}
+            <li>
+              <a href="{{ item.url }}" class="text-gray-800 hover:text-primary font-medium">
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+
+    <!-- Search -->
+    {% if widget.data.show_search %}
+      <div class="search hidden md:block">
+        <input
+          type="text"
+          placeholder="ابحث..."
+          class="border rounded px-3 py-1 text-sm"
+        />
+      </div>
+    {% endif %}
+
+  </div>
+</header>
