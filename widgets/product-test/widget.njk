@@ -1,0 +1,41 @@
+<section id="{{ widget.id }}" class="widget hero-widget py-5 bg-light">
+
+  <div class="container text-center mb-5">
+    <h1 v-text="message" class="display-5 mb-3"></h1>
+    <button @click="increment" class="btn btn-primary">
+      عدد الضغطات: <span v-text="count"></span>
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center g-4">
+      
+      <div class="col-md-6">
+        <h2 class="fw-bold">{{ context.product.title }}</h2>
+        <p class="text-secondary mb-1">
+          <strong>Slug:</strong> {{ context.product.slug }}
+        </p>
+        <p class="text-muted">
+          <strong>ID:</strong> {{ context.product._id }}
+        </p>
+      </div>
+
+      {% if context.product.images.length > 0 %}
+      <div class="col-md-6">
+        <div class="d-flex flex-wrap gap-3">
+          {% for image in context.product.images %}
+          <img 
+            src="{{ image.fileUrl }}" 
+            alt="صورة المنتج" 
+            class="img-thumbnail rounded shadow-sm"
+            style="width: 100px; height: 100px; object-fit: cover;" 
+          />
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+  
+</section>

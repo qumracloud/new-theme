@@ -6,13 +6,31 @@
         "key": "title",
         "type": "text",
         "label": "العنوان الرئيسي",
-        "default": "مرحبًا بك في متجرنا"
+        "default": "مرحبًا بك فسسسسسي متجرنا"
       },
       {
         "key": "subtitle",
         "type": "text",
         "label": "الوصف الفرعي",
         "default": "أفضل المنتجات في مكان واحد"
+      },
+      {
+        "key": "thirdtitle",
+        "type": "text",
+        "label": "الوصف الفرعي",
+        "default": "أفضل المنتجات في مكان واحد"
+      },
+      {
+        "key": "fourthtitle",
+        "type": "text",
+        "label": "الوصف الفرعي",
+        "default": "العنوان الرابع"
+      },
+      {
+        "key": "qqqqqqqqqqqqqqqqqqqqq",
+        "type": "text",
+        "label": "الوصف الفرعي",
+        "default": "qqqqqqqqqqqqqqqqqqqqq"
       },
       {
         "key": "image",

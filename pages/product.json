@@ -1,0 +1,12 @@
+{
+  "layout": "layout",
+  "title": "الصفحة الرئيسية",
+  "widgets": [
+    {
+      "key": "product-test",
+      "name": "product-test",
+      "widget": "product-test",
+      "data": {}
+    }
+  ]
+}

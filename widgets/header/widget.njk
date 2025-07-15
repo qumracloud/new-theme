@@ -10,9 +10,11 @@
     <!-- Logo -->
     <div class="logo">
       <a href="/">
-        <img src="{{ widget.data.logo }}" alt="Logo" class="h-10">
+        <img src={{ header.data.logo | assets }} alt="Logo" class="h-10">
       </a>
     </div>
+   <h1>{{ globals.app.name }}</h1>
+   
 
     <!-- Menu -->
     {% if widget.data.menu %}

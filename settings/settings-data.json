@@ -1,0 +1,10 @@
+{
+  "header": {
+    "title": "Metadata Schema",
+    "description": "Schema for metadata settings in the application."
+  },
+  "footer": {
+    "title": "Metadata Schema",
+    "description": "Schema for metadata settings in the application."
+  }
+}

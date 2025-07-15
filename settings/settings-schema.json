@@ -1,0 +1,50 @@
+{
+  "max": {
+    "type": "number",
+    "label": "Maximum Number of Metadata Entries",
+    "default": 100
+  },
+  "test": {
+    "type": "text",
+    "label": "Metadata Schema Name",
+    "default": "Metadata Schema"
+  },
+  "header": {
+    "title": {
+      "type": "text",
+      "label": "Metadata Schema Title",
+      "default": "Metadata Schema"
+    },
+    "logo": {
+      "type": "media",
+      "label": "Metadata Schema Title",
+      "default": "logo.png"
+    },
+    "description": {
+      "type": "text",
+      "label": "Metadata Schema Description",
+      "default": "Schema for metadata settings in the application."
+    },
+    "list": {
+      "type": "list",
+      "label": "Metadata List"
+    },
+    "products": {
+      "type": "Products_collection",
+      "label": "Products List",
+      "default": "main-collection"
+    }
+  },
+  "footer": {
+    "title": {
+      "type": "text",
+      "label": "Metadata Schema Title",
+      "default": "Metadata Schema"
+    },
+    "description": {
+      "type": "text",
+      "label": "Metadata Schema Description",
+      "default": "Schema for metadata settings in the application."
+    }
+  }
+}
