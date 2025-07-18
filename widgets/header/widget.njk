@@ -1,46 +1,90 @@
-{% if widget.data.announcement_text %}
-  <div class="announcement-bar bg-gray-900 text-white text-sm py-2 text-center">
-    {{ widget.data.announcement_text }}
-  </div>
-{% endif %}
-
-<header class="header bg-white shadow-md">
-  <div class="container mx-auto flex items-center justify-between py-4 px-6">
-    
-    <!-- Logo -->
-    <div class="logo">
-      <a href="/">
-        <img src={{ header.data.logo | assets }} alt="Logo" class="h-10">
-      </a>
-    </div>
-   <h1>{{ globals.app.name }}</h1>
-   
-
-    <!-- Menu -->
-    {% if widget.data.menu %}
-      <nav class="main-nav">
-        <ul class="flex space-x-6">
-          {% for item in widget.data.menu_items %}
-            <li>
-              <a href="{{ item.url }}" class="text-gray-800 hover:text-primary font-medium">
-                {{ item.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
-    {% endif %}
-
-    <!-- Search -->
-    {% if widget.data.show_search %}
-      <div class="search hidden md:block">
-        <input
-          type="text"
-          placeholder="ابحث..."
-          class="border rounded px-3 py-1 text-sm"
-        />
+    <!-- Top Bar -->
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-content">
+          <div class="header-top-right">
+            <span
+              class="header-top-item hidden md:inline header-top-item--inline"
+            >
+              <span
+                class="iconify iconify-white"
+                data-icon="mdi:truck-fast-outline"
+                data-width="20"
+                data-height="20"
+                style="vertical-align: middle"
+              ></span>
+              {{settings.navbar_text}}
+            </span>
+            <span class="header-top-item">
+              <i class="fas fa-envelope"></i>
+              {{settings.email}}
+            </span>
+          </div>
+          <div class="header-top-left">
+            <span class="header-top-item">
+              <i class="fas fa-user"></i>
+              تسجيل الدخول
+            </span>
+            <span class="header-top-item">
+              <i class="fas fa-question-circle"></i>
+              مساعدة
+            </span>
+          </div>
+        </div>
       </div>
-    {% endif %}
+    </div>
 
-  </div>
-</header>
+    <!-- Header -->
+    <header class="header-main">
+      <div class="container">
+        <div class="header-main-content">
+          <!-- Logo - Right side in RTL -->
+          <div class="logo-container">
+            <img
+              src={{'Group.svg' | assets}}
+              alt="Logo"
+              class="logo-svg"
+              style="width: 48px; height: 54px"
+            />
+          </div>
+
+          <!-- Search Bar - Center -->
+          <div class="search-container">
+            <input
+              type="text"
+              placeholder="ابحث هنا..."
+              class="search-input"
+              dir="rtl"
+            />
+            <button class="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <!-- Contact & Cart - Left side in RTL -->
+          <div class="header-actions">
+            <div class="contact-badge">
+              <span
+                class="iconify contact-badge-icon"
+                data-icon="material-symbols:call-outline"
+                data-width="22"
+                data-height="22"
+              ></span>
+              <div class="contact-badge-text">
+                <div class="contact-badge-support">دعم فني متاح 24/7</div>
+                <div>01078787878+</div>
+              </div>
+            </div>
+            <div class="cart-container">
+              <span class="cart-icon-wrapper">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">3</span>
+              </span>
+            </div>
+            <button class="menu-toggle">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>

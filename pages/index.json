@@ -3,67 +3,13 @@
   "title": "الصفحة الرئيسية",
   "widgets": [
     {
-      "key": "features-1asd222",
-      "name": "مميزات المتجر",
-      "widget": "features",
-      "data": {
-        "features": [
-          {
-            "icon": "truck",
-            "title": "شحن سريع",
-            "description": "نوصل لك خلال يومين"
-          },
-          {
-            "icon": "shield",
-            "title": "ضمان",
-            "description": "ضمان استرجاع خلال 14 يوم"
-          },
-          {
-            "icon": "support",
-            "title": "دعم فوري",
-            "description": "خدمة عملاء 90/7"
-          }
-        ]
-      }
+      "name": "Product Section",
+      "widget": "products-section",
+      "data": {}
     },
     {
-      "key": "newsletter-1",
-      "name": "النشرة البريدية",
-      "widget": "newsletter",
-      "data": {
-        "heading": "اشترك لتصلك العروض",
-        "placeholder": "أدخل بريدك الإلكتروني",
-        "button_text": "اشترك"
-      }
-    },
-    {
-      "key": "best-seller-1",
       "name": "Service Features",
-      "widget": "best-seller",
-      "data": {
-        "features": [
-          {
-            "icon": "🚀",
-            "title": "سرعة في التوصيل",
-            "description": "نوصلك في أقل من 48 ساعة داخل المدن الكبرى"
-          },
-          {
-            "icon": "🔒",
-            "title": "دفع آمن",
-            "description": "نستخدم بوابات دفع موثوقة لحماية بياناتك"
-          },
-          {
-            "icon": "💬",
-            "title": "دعم فني سريع",
-            "description": "دعم متواصل لحل مشاكلك عبر الدردشة"
-          }
-        ]
-      }
-    },
-    {
-      "key": "main-hero-1",
-      "name": "Service Features",
-      "widget": "main-hero",
+      "widget": "product-card",
       "data": {
         "features": [
           {

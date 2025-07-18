@@ -1,0 +1,12 @@
+{
+  "name": "collection-products",
+  "description": "عرض 3 مميزات رئيسية للخدمة أو المتجر",
+  "data": [
+    {
+      "key": "products",
+      "type": "collection",
+      "label": "العنوان",
+      "default": "neccollectionww2w222"
+    }
+  ]
+}

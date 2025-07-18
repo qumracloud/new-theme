@@ -1,63 +1,55 @@
 <section class="product-listing">
   <div class="container">
-    <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+    <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; padding: 20px 0;">
       {% for product in context.products %}
-        <a href="/product/{{ product.slug }}" style="width: 280px; text-decoration: none; color: inherit; border: 1px solid #eee; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: block; transition: transform 0.2s;">
-          
-          <!-- صورة المنتج -->
-          {% if product.images and product.images.length > 0 %}
-            <div style="width: 100%; height: 180px; background: #f9f9f9;">
-              <img 
-                src="{{ product.images[0].fileUrl }}" 
-                alt="{{ product.title }}" 
-                style="width: 100%; height: 100%; object-fit: cover;"
-              />
+        <div class="product-item" style="background: #fff; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+          <a href="/product/{{ product.slug }}" style="text-decoration: none; color: inherit; display: block;">
+            <!-- صورة المنتج -->
+            <div class="product-icon" style="width: 80px; height: 80px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+              {% if product.images and product.images.length > 0 %}
+                <img
+                  src="{{ product.images[0].fileUrl }}"
+                  alt="{{ product.title }}"
+                  style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"
+                />
+              {% else %}
+                <div style="width: 80px; height: 80px; background: #e9ecef; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 12px;">
+                  <span>لا توجد صورة</span>
+                </div>
+              {% endif %}
             </div>
-          {% else %}
-            <div style="width: 100%; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center;">
-              <span style="color: #888;">لا توجد صورة</span>
-            </div>
-          {% endif %}
+            
+            <!-- اسم المنتج -->
+            <span class="product-label" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 12px; display: block; line-height: 1.4;">{{ product.title }}</span>
+            
+            <!-- تفاصيل المنتج -->
+            <div class="product-details" style="margin-top: 12px; text-align: center;">
+              {% if product.pricing %}
+                <div class="product-price" style="margin-bottom: 8px;">
+                  <span class="current-price" style="font-weight: bold; color: #27ae60; font-size: 16px; display: block; margin-bottom: 4px;">{{ product.pricing.price }} EGP</span>
+                  {% if product.pricing.compareAtPrice > product.pricing.price %}
+                    <span style="text-decoration: line-through; color: #999; font-size: 14px; margin-right: 8px;">{{ product.pricing.compareAtPrice }} EGP</span>
+                    <span style="color: #e74c3c; font-size: 12px; font-weight: 600; background: #ffe6e6; padding: 2px 6px; border-radius: 4px;">-{{ product.pricing.discount.discountValue }}%</span>
+                  {% endif %}
+                </div>
+              {% endif %}
 
-          <!-- تفاصيل المنتج -->
-          <div style="padding: 16px;">
-            <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">
-              {{ product.title }}
-            </h2>
+              <!-- الكمية -->
+              <div class="product-quantity" style="margin-bottom: 8px;">
+                <span style="font-size: 14px; color: #555; font-weight: 500;">الكمية: {{ product.quantity }}</span>
+              </div>
 
-            {% if product.pricing %}
-              <div style="margin-bottom: 8px;">
-                <span style="font-weight: bold; color: #27ae60;">
-                  {{ product.pricing.price }} EGP
-                </span>
-                {% if product.pricing.compareAtPrice > product.pricing.price %}
-                  <span style="text-decoration: line-through; color: #999; margin-left: 8px;">
-                    {{ product.pricing.compareAtPrice }} EGP
-                  </span>
-                  <span style="color: #e74c3c; font-size: 14px; margin-left: 8px;">
-                    -{{ product.pricing.discount.discountValue }}%
-                  </span>
+              <!-- الحالة -->
+              <div class="product-status" style="margin-top: 8px;">
+                {% if product.status == 'draft' %}
+                  <span style="color: #e67e22; font-size: 12px; font-weight: 600; background: #fef3e7; padding: 4px 8px; border-radius: 12px; display: inline-block;">مسودة</span>
+                {% else %}
+                  <span style="color: #2ecc71; font-size: 12px; font-weight: 600; background: #e8f5e8; padding: 4px 8px; border-radius: 12px; display: inline-block;">منشور</span>
                 {% endif %}
               </div>
-            {% endif %}
-
-            <!-- الكمية -->
-            <p style="font-size: 14px; color: #555; margin-bottom: 4px;">
-              <strong>الكمية:</strong> {{ product.quantity }}
-            </p>
-
-            <!-- الحالة -->
-            {% if product.status == 'draft' %}
-              <p style="font-size: 14px; color: #e67e22;">
-                <strong>الحالة:</strong> مسودة
-              </p>
-            {% else %}
-              <p style="font-size: 14px; color: #2ecc71;">
-                <strong>الحالة:</strong> منشور
-              </p>
-            {% endif %}
-          </div>
-        </a>
+            </div>
+          </a>
+        </div>
       {% endfor %}
     </div>
   </div>

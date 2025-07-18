@@ -3,7 +3,6 @@
   "title": "الصفحة الرئيسية",
   "widgets": [
     {
-      "key": "products",
       "name": "products",
       "widget": "products",
       "data": {}
