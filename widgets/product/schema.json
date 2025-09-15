@@ -1,7 +1,7 @@
 {
     "name": "Hero Banner",
     "description": "قسم البانر الرئيسي الذي يحتوي على عنوان وصورة وزر",
-    "data": [
+    "settings": [
       {
         "key": "title",
         "type": "text",
@@ -18,7 +18,7 @@
         "key": "image",
         "type": "image",
         "label": "صورة البانر",
-        "default": "/assets/images/banner.jpg"
+        "default": ""
       },
       {
         "key": "button_text",

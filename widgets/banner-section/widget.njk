@@ -1,43 +1,581 @@
-    <!-- Promotional Banners -->
-    <section class="banner-section">
-      <div class="container">
-        <div class="banner-grid">
-          <!-- Banner Orange -->
-          <div class="banner-card banner-primary">
-            <div class="banner-flex">
-              <img
-                src={{"196099b25961ba2ac319a3182b29e5e0b042b992.png" | assets}}
-                alt="ساعة Apple Watch"
-                class="banner-image-icon"
-              />
-              <div class="banner-texts">
-                <h3 class="banner-title">
-                  ساعة Apple Watch الذكية بتصميم أنيق وأداء مذهل
-                </h3>
-                <div class="banner-subtitle">أقل سعر</div>
-                <div class="banner-price">90 ر.س</div>
-              </div>
-            </div>
-          </div>
+<!-- Flat Icon CDN -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
-          <!-- Banner Black -->
-          <div class="banner-card banner-dark">
-            <div class="banner-flex">
-              <img
-                src={{"08cd86663f67b5ccd16201a25157f85bfcf62974.png" | assets}}
-                alt="شاشة 4K"
-                class="banner-image-icon"
-              />
-              <div class="banner-texts">
-                <div class="banner-badge">جديد</div>
-                <h3 class="banner-title">
-                  شاشة 55 بوصة بدقة 4K UHD Android TV
-                </h3>
-                <div class="banner-subtitle">أقل سعر</div>
-                <div class="banner-price">1000 ر.س</div>
+<!-- Banner Section - Professional & Modern -->
+<section class="relative w-full overflow-hidden banner-section">
+  <div class="banner-container">
+  {% if widget.blocks.length > 1 %}
+      <!-- Professional Swiper with Enhanced Navigation -->
+      <div class="relative banner-swiper-container">
+      <div class="swiper banner-swiper" 
+             data-autoplay-delay="{% if widget.data.autoplay_delay %}{{ widget.data.autoplay_delay * 1000 }}{% else %}4000{% endif %}"
+           data-show-navigation="{% if widget.data.show_navigation %}true{% else %}false{% endif %}"
+             data-show-pagination="{% if widget.data.show_pagination %}true{% else %}false{% endif %}"
+             data-loop="true"
+             data-effect="slide"
+             data-speed="800">
+        <div class="swiper-wrapper">
+          {% for block in widget.blocks %}
+            <div class="swiper-slide">
+                <div class="banner-slide-container">
+                  {% if block.data.image and block.data.image.fileUrl %}
+                    <a href="{{ block.data.link | default(widget.data.hero_link | default('#')) }}" 
+                       class="banner-slide-link">
+                      <div class="banner-image-container">
+                      <img 
+                        src="{{ block.data.image.fileUrl }}" 
+                        alt="{{ block.data.alt | default(widget.data.hero_alt | default('Banner')) }}" 
+                          loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
+                          class="banner-image"
+                        />
+                        <!-- Subtle Overlay -->
+                        <div class="banner-overlay"></div>
+                      </div>
+                      <!-- Optional Content Overlay -->
+                      {% if block.data.title or block.data.subtitle or block.data.button_text %}
+                        <div class="banner-content">
+                          {% if block.data.title %}
+                            <h2 class="banner-title">{{ block.data.title }}</h2>
+                          {% endif %}
+                          {% if block.data.subtitle %}
+                            <p class="banner-subtitle">{{ block.data.subtitle }}</p>
+                          {% endif %}
+                          {% if block.data.button_text %}
+                            <div class="banner-button">
+                              {{ block.data.button_text }}
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </a>
+                  {% else %}
+                    <div class="banner-placeholder">
+                      <div class="banner-placeholder-content">
+                        <div class="banner-placeholder-icon">
+                          <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2M9 12h6m-6 4h6"></path>
+                          </svg>
+                        </div>
+                        <h3 class="banner-placeholder-title">Banner Section</h3>
+                        <p class="banner-placeholder-text">أضف صورة للبانر الإعلاني</p>
+                      </div>
+                    </div>
+                  {% endif %}
               </div>
             </div>
-          </div>
+          {% endfor %}
         </div>
+          
+          <!-- Enhanced Navigation -->
+        {% if widget.data.show_navigation %}
+            <button class="banner-nav-prev" id="banner-prev">
+              <i class="fi fi-rr-angle-right text-gray-700 text-lg"></i>
+            </button>
+            <button class="banner-nav-next" id="banner-next">
+              <i class="fi fi-rr-angle-left text-gray-700 text-lg"></i>
+            </button>
+        {% endif %}
+          
+          <!-- Enhanced Pagination -->
+        {% if widget.data.show_pagination %}
+            <div class="swiper-pagination banner-pagination"></div>
+        {% endif %}
       </div>
-    </section>
+    </div>
+  {% else %}
+      <!-- Single Slide - Same Professional Styling -->
+    {% for block in widget.blocks %}
+        <div class="banner-single-slide">
+          {% if block.data.image and block.data.image.fileUrl %}
+            <a href="{{ block.data.link | default(widget.data.hero_link | default('#')) }}" 
+               class="banner-slide-link">
+              <div class="banner-image-container">
+              <img 
+                src="{{ block.data.image.fileUrl }}" 
+                alt="{{ block.data.alt | default(widget.data.hero_alt | default('Banner')) }}" 
+                  loading="eager"
+                  class="banner-image"
+                />
+                <div class="banner-overlay"></div>
+              </div>
+              {% if block.data.title or block.data.subtitle or block.data.button_text %}
+                <div class="banner-content">
+                  {% if block.data.title %}
+                    <h2 class="banner-title">{{ block.data.title }}</h2>
+                  {% endif %}
+                  {% if block.data.subtitle %}
+                    <p class="banner-subtitle">{{ block.data.subtitle }}</p>
+                  {% endif %}
+                  {% if block.data.button_text %}
+                    <div class="banner-button">
+                      {{ block.data.button_text }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </a>
+          {% else %}
+            <div class="banner-placeholder">
+              <div class="banner-placeholder-content">
+                <div class="banner-placeholder-icon">
+                  <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2M9 12h6m-6 4h6"></path>
+                  </svg>
+                </div>
+                <h3 class="banner-placeholder-title">Banner Section</h3>
+                <p class="banner-placeholder-text">أضف صورة للبانر الإعلاني</p>
+              </div>
+            </div>
+          {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</section>
+
+<style>
+/* ===== BANNER SECTION PROFESSIONAL STYLES ===== */
+
+/* Container & Layout */
+.banner-container {
+  width: 100%;
+  padding: 0;
+}
+
+.banner-swiper-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.banner-slide-container,
+.banner-single-slide {
+  position: relative;
+  width: 100%;
+  height: 350px; /* Fixed height for consistency - smaller than hero */
+  overflow: hidden;
+}
+
+.banner-slide-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Image Container - Perfect Aspect Ratio */
+.banner-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* White background instead of gray */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Removed hover effects */
+}
+
+/* Subtle Overlay */
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  opacity: 0;
+  /* Removed hover effects */
+}
+
+/* Content Overlay */
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+  max-width: 85%;
+}
+
+.banner-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  line-height: 1.3;
+  font-family: 'Cairo', sans-serif;
+}
+
+.banner-subtitle {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  font-family: 'Cairo', sans-serif;
+  opacity: 0.9;
+}
+
+.banner-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #003033 0%, #1a4a4d 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 48, 51, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Removed hover effects for buttons */
+
+/* Placeholder Styles */
+.banner-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* White background instead of gray */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #cbd5e1;
+}
+
+.banner-placeholder-content {
+  text-align: center;
+  color: #64748b;
+}
+
+.banner-placeholder-icon {
+  margin-bottom: 0.75rem;
+}
+
+.banner-placeholder-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+.banner-placeholder-text {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Enhanced Navigation - Like New Arrivals */
+.banner-nav-prev,
+.banner-nav-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827 !important;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.banner-nav-prev {
+  right: 15px;
+}
+
+.banner-nav-next {
+  left: 15px;
+}
+
+.banner-nav-prev:hover,
+.banner-nav-next:hover {
+  background: #f9fafb;
+  border-color: #003033;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.banner-nav-prev:active,
+.banner-nav-next:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Enhanced Pagination - Like Hero */
+.banner-pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  width: auto;
+  display: inline-block;
+}
+
+.banner-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  margin: 0 6px;
+  transition: all 0.3s ease;
+}
+
+.banner-pagination .swiper-pagination-bullet-active {
+  background: #003033;
+  transform: scale(1.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Mobile (up to 768px) - Modern & Professional */
+@media (max-width: 768px) {
+  /* Container adjustments - Full width on mobile */
+  .banner-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .banner-swiper-container {
+    border-radius: 0; /* No border radius for full width */
+    box-shadow: none; /* No shadow for full width */
+    overflow: visible;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .banner-slide-container,
+  .banner-single-slide {
+    height: 250px; /* Optimized height for mobile */
+    border-radius: 0; /* No border radius for full width */
+  }
+  
+  /* Image container - perfect mobile sizing with full content display */
+  .banner-image-container {
+    background: #ffffff; /* White background */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .banner-image {
+    object-fit: contain !important; /* Show full image content without cropping */
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+  }
+  
+  /* Content adjustments */
+  .banner-content {
+    max-width: 90%;
+    padding: 0 1rem;
+  }
+  
+  .banner-title {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .banner-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+  }
+  
+  /* Navigation - mobile optimized with better design */
+  .banner-nav-prev,
+  .banner-nav-next {
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+  }
+  .banner-nav-prev {
+    left: unset;
+    right: 16px;
+  }
+  .banner-nav-next {
+    right: unset;
+    left: 16px;
+  }
+  
+  /* Hide pagination on mobile */
+  .banner-pagination {
+    display: none !important;
+  }
+  
+  /* Placeholder improvements */
+  .banner-placeholder {
+    border-radius: 8px;
+    background: #ffffff; /* White background */
+  }
+  
+  .banner-placeholder-title {
+    font-size: 1.1rem;
+  }
+  
+  .banner-placeholder-text {
+    font-size: 0.85rem;
+  }
+  
+  /* Section spacing - mobile optimized */
+  .banner-section {
+    padding: 0;
+    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Remove extra padding on mobile */
+  .banner-section .banner-container {
+    padding: 0;
+  }
+  
+  /* Enhanced mobile touch interactions */
+  .banner-swiper-container {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Removed mobile-specific animations */
+  /* تحسين أسهم التنقل للهواتف المحمولة */
+  .banner-nav-prev, .banner-nav-next {
+    display: flex !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+  
+  .banner-nav-prev {
+    right: 12px !important;
+    left: auto !important;
+  }
+  
+  .banner-nav-next {
+    left: 12px !important;
+    right: auto !important;
+  }
+  
+}
+
+/* Tablet (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .banner-slide-container,
+  .banner-single-slide {
+    height: 300px;
+  }
+  
+  .banner-title {
+    font-size: 1.5rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+/* Desktop (1025px and up) */
+@media (min-width: 1025px) {
+  .banner-slide-container,
+  .banner-single-slide {
+    height: 350px;
+  }
+  
+  .banner-title {
+    font-size: 1.75rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Large Desktop (1200px and up) */
+@media (min-width: 1200px) {
+  .banner-slide-container,
+  .banner-single-slide {
+    height: 400px;
+  }
+  
+  .banner-title {
+    font-size: 2rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* ===== SWIPER CUSTOMIZATION ===== */
+.banner-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+/* Loading Animation */
+.banner-image {
+  opacity: 0;
+  animation: fadeInBannerImage 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInBannerImage {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smooth transitions between slides */
+.banner-swiper .swiper-slide-active .banner-image {
+  transform: scale(1);
+}
+</style>

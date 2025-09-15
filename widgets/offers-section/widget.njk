@@ -1,0 +1,129 @@
+<!-- Flat Icon CDN -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+<!-- Offers Section -->
+<section class="py-8 md:py-12 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4 md:mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-black text-center sm:text-right">{{ widget.data.section_title | default('العروض 🔥') }}</h2>
+      <a href="{{ widget.data.view_all_link | default('#') }}" class="text-sm font-semibold text-gray-800 hover:underline text-center sm:text-left order-first sm:order-last">عرض الكل ←</a>
+    </div>
+    <div class="swiper offers-swiper">
+      <div class="swiper-wrapper">
+        {% for block in widget.blocks %}
+        <div class="swiper-slide">
+          <div x-data='xDataproduct({ product: { _id: "{{ block.data.product_id }}", title: "{{ block.data.title }}", pricing: { price: {{ block.data.price }}, compareAtPrice: {{ block.data.old_price }} } } })' class="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg flex flex-col h-96 overflow-hidden transition-all duration-300">
+            <a href="{{ block.data.link | default('#') }}" class="block bg-gray-50 flex items-center justify-center h-56 overflow-hidden">
+              <img src="{{ block.data.image.fileUrl | default('https://placehold.co/400x300/gray/white') }}" class="w-full h-full object-contain p-4 transition-all duration-300 group-hover:scale-105 group-hover:opacity-90" alt="{{ block.data.title }}">
+            </a>
+            <div class="flex flex-col flex-1 p-4">
+              <!-- Product Title -->
+              <h3 class="font-semibold text-sm text-gray-800 leading-tight font-cairo line-clamp-2 mb-2 flex-1" title="{{ block.data.title }}">{{ block.data.title }}</h3>
+              
+              <!-- Price -->
+              <div class="flex items-center gap-2 mb-3">
+                {% if block.data.price > 0 %}
+                <p class="text-gray-900 text-lg font-bold font-cairo">{{ block.data.price | money }}</p>
+                {% endif %}
+                {% if block.data.old_price > block.data.price %}
+                <p class="text-gray-500 line-through text-sm font-medium font-cairo">{{ block.data.old_price | money }}</p>
+                {% endif %}
+              </div>
+              
+              <!-- Add to Cart Button -->
+              <button 
+                  @click="addProductToCart('{{ block.data.product_id }}', 1, [])"
+                  :disabled="loading.addToCart"
+                  class="w-full bg-[#003033] hover:bg-[#004d4d] text-white rounded-lg py-3 px-4 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow text-sm font-cairo font-medium">
+                  <div x-show="!loading.addToCart" class="flex items-center justify-center gap-2">
+                    <i class="fi fi-rr-shopping-cart text-lg"></i>
+                    <span>أضف للسلة</span>
+                  </div>
+                  <div x-show="loading.addToCart" class="flex items-center justify-center gap-2">
+                    <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                    <span>جاري الإضافة...</span>
+                  </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next offers-next"></div>
+      <div class="swiper-button-prev offers-prev"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+/* Swiper Navigation Buttons Styling */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 28px;
+    height: 28px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #111827 !important;
+    box-shadow: none;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+    
+    .offers-swiper {
+        padding: 0 12px;
+    }
+    
+    .swiper-slide {
+        width: calc(50% - 6px) !important;
+        margin-right: 12px !important;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+    .swiper-slide {
+        width: calc(50% - 12px) !important;
+        margin-right: 24px !important;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  new Swiper('.offers-swiper', {
+    slidesPerView: 2,
+    spaceBetween: 12,
+    navigation: {
+      nextEl: '.offers-next',
+      prevEl: '.offers-prev',
+    },
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 12 },
+      768: { slidesPerView: 2, spaceBetween: 24 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
+      1280: { slidesPerView: 4, spaceBetween: 24 },
+    },
+  });
+});
+</script> 

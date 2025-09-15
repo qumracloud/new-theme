@@ -1,13 +1,13 @@
 {
   "name": "Hero Banner",
   "description": "قسم البانر الرئيسي الذي يحتوي على عنوان وصورة وزر",
-  "data": [],
+  "settings": [],
   "blocks": [
     {
       "name": "products",
       "description": "قائمة المنتجات",
       "icon": "products",
-      "data": [
+      "settings": [
         {
           "name": "title",
           "type": "text",

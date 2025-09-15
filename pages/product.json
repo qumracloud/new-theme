@@ -3,9 +3,9 @@
   "title": "الصفحة الرئيسية",
   "widgets": [
     {
-      "name": "product-test",
-      "widget": "product-test",
-      "data": {}
+      "name": "product-details",
+      "widget": "product-details",
+      "settings": {}
     }
   ]
 }

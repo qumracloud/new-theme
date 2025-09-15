@@ -1,56 +1,27 @@
 <section class="product-listing">
-  <div class="container">
-    <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; padding: 20px 0;">
-      {% for product in context.products %}
-        <div class="product-item" style="background: #fff; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
-          <a href="/product/{{ product.slug }}" style="text-decoration: none; color: inherit; display: block;">
-            <!-- صورة المنتج -->
-            <div class="product-icon" style="width: 80px; height: 80px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
-              {% if product.images and product.images.length > 0 %}
-                <img
-                  src="{{ product.images[0].fileUrl }}"
-                  alt="{{ product.title }}"
-                  style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"
-                />
-              {% else %}
-                <div style="width: 80px; height: 80px; background: #e9ecef; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 12px;">
-                  <span>لا توجد صورة</span>
-                </div>
-              {% endif %}
-            </div>
-            
-            <!-- اسم المنتج -->
-            <span class="product-label" style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 12px; display: block; line-height: 1.4;">{{ product.title }}</span>
-            
-            <!-- تفاصيل المنتج -->
-            <div class="product-details" style="margin-top: 12px; text-align: center;">
-              {% if product.pricing %}
-                <div class="product-price" style="margin-bottom: 8px;">
-                  <span class="current-price" style="font-weight: bold; color: #27ae60; font-size: 16px; display: block; margin-bottom: 4px;">{{ product.pricing.price }} EGP</span>
-                  {% if product.pricing.compareAtPrice > product.pricing.price %}
-                    <span style="text-decoration: line-through; color: #999; font-size: 14px; margin-right: 8px;">{{ product.pricing.compareAtPrice }} EGP</span>
-                    <span style="color: #e74c3c; font-size: 12px; font-weight: 600; background: #ffe6e6; padding: 2px 6px; border-radius: 4px;">-{{ product.pricing.discount.discountValue }}%</span>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              <!-- الكمية -->
-              <div class="product-quantity" style="margin-bottom: 8px;">
-                <span style="font-size: 14px; color: #555; font-weight: 500;">الكمية: {{ product.quantity }}</span>
-              </div>
-
-              <!-- الحالة -->
-              <div class="product-status" style="margin-top: 8px;">
-                {% if product.status == 'draft' %}
-                  <span style="color: #e67e22; font-size: 12px; font-weight: 600; background: #fef3e7; padding: 4px 8px; border-radius: 12px; display: inline-block;">مسودة</span>
-                {% else %}
-                  <span style="color: #2ecc71; font-size: 12px; font-weight: 600; background: #e8f5e8; padding: 4px 8px; border-radius: 12px; display: inline-block;">منشور</span>
-                {% endif %}
-              </div>
-            </div>
-          </a>
+  <div class="container mx-auto py-10">
+    {% if context.products | length > 0 %}
+    <div class=" flex  flex-col gap-4">
+      <!-- Mobile: horizontal list showing two cards visible -->
+      <div class="md:hidden -mx-4 px-4">
+        <div class="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide mobile-tight">
+          {% for product in context.products %}
+          <div class="min-w-[50%] snap-start">
+            {%ui "product-card.njk" ,product=product ,variant='index-swiper' %}
+          </div>
+          {% endfor %}
         </div>
-      {% endfor %}
+      </div>
+      <!-- Desktop Grid -->
+      <div class="hidden md:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-[10px] ">
+        {% for product in context.products %}
+        {%ui "product-card.njk" ,product=product %}
+        {% endfor %}
+      </div>
+      {%ui "pagination.njk" %}
     </div>
+    {% else %}
+    {%ui "empty.njk" , BtnText="تصفح اقسام المنتجات",BtnUrl="/collections"%}
+    {% endif %}
   </div>
 </section>

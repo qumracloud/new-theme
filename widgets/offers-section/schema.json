@@ -1,0 +1,78 @@
+{
+  "name": "Offers Section",
+  "description": "قسم العروض والخصومات",
+  "settings": {
+    "section_title": {
+      "type": "string",
+      "label": "عنوان القسم",
+      "default": "العروض 🔥"
+    },
+    "view_all_text": {
+      "type": "string",
+      "label": "نص عرض الكل",
+      "default": "عرض الكل"
+    },
+    "view_all_link": {
+      "type": "string",
+      "label": "رابط عرض الكل",
+      "default": "#"
+    }
+  },
+  "blocks": {
+    "productItem": {
+      "name": "منتج",
+      "schema": {
+        "product_id": {
+          "type": "string",
+          "label": "معرف المنتج",
+          "default": ""
+        },
+        "title": {
+          "type": "string",
+          "label": "اسم المنتج",
+          "default": ""
+        },
+        "image": {
+          "type": "media",
+          "label": "صورة المنتج",
+          "default": ""
+        },
+        "price": {
+          "type": "number",
+          "label": "السعر",
+          "default": 0
+        },
+        "old_price": {
+          "type": "number",
+          "label": "السعر القديم",
+          "default": 0
+        },
+        "link": {
+          "type": "string",
+          "label": "رابط المنتج",
+          "default": "#"
+        }
+      }
+    }
+  },
+  "presets": [
+    {
+      "category": "homepage",
+      "name": "🔥 قسم العروض",
+      "blocks": [
+        {
+          "block": "productItem",
+          "name": "منتج العرض الأول",
+          "settings": {
+            "product_id": "",
+            "title": "",
+            "image": "",
+            "price": 0,
+            "old_price": 0,
+            "link": "#"
+          }
+        }
+      ]
+    }
+  ]
+} 

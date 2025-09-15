@@ -1,22 +1,609 @@
-    <!-- Hero Section -->
-    <section class="hero-section" style="background-image: url('{{"Frame 1984083748.png" | assets}}');">
-      <div class="container">
-        <div class="hero-content-wrapper">
-          <!-- Text content - Right side in RTL -->
-          <div class="hero-content">
-            <h1 class="hero-title hero-title-custom">
-              {{widget.data.title}}
-            </h1>
-            <p class="hero-description hero-description-custom">
-              اكتشف مجموعة مختارة من الهواتف، اللابتوبات، السماعات، والإكسسوارات
-              – مع شحن سريع وضمان حقيقي
-            </p>
-            <button class="btn-primary btn-primary-custom">تسوق الآن</button>
-          </div>
-          <!-- Image - Left side in RTL -->
-          <div class="hero-image">
-            <!-- Removed the <img class='hero-img'> so the background image covers the hero section -->
-          </div>
+<!-- Flat Icon CDN -->
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+<!-- Hero Banner Section - Professional & Modern -->
+<section class="relative w-full overflow-hidden hero-section">
+  <div class="hero-container">
+  {% if widget.blocks.length > 1 %}
+      <!-- Professional Swiper with Enhanced Navigation -->
+      <div class="relative hero-swiper-container">
+      <div class="swiper hero-swiper"
+             data-autoplay-delay="{% if widget.data.autoplay_delay %}{{ widget.data.autoplay_delay * 1000 }}{% else %}5000{% endif %}"
+           data-show-navigation="{% if widget.data.show_navigation %}true{% else %}false{% endif %}"
+             data-show-pagination="{% if widget.data.show_pagination %}true{% else %}false{% endif %}"
+             data-loop="true"
+             data-effect="fade"
+             data-fade-effect='{"crossFade": true}'>
+        <div class="swiper-wrapper">
+          {% for block in widget.blocks %}
+            <div class="swiper-slide">
+                <div class="hero-slide-container">
+                  {% if block.data.image and block.data.image.fileUrl %}
+                    <a href="{{ block.data.link | default(widget.data.hero_link | default('#')) }}" 
+                       class="hero-slide-link">
+                      <div class="hero-image-container">
+                      <img 
+                        src="{{ block.data.image.fileUrl }}" 
+                        alt="{{ block.data.alt | default(widget.data.hero_alt | default('Hero Banner')) }}" 
+                          loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
+                          class="hero-image"
+                        />
+                        <!-- Overlay for better text readability -->
+                        <div class="hero-overlay"></div>
+                      </div>
+                      <!-- Optional Content Overlay -->
+                      {% if block.data.title or block.data.subtitle or block.data.button_text %}
+                        <div class="hero-content">
+                          {% if block.data.title %}
+                            <h1 class="hero-title">{{ block.data.title }}</h1>
+                          {% endif %}
+                          {% if block.data.subtitle %}
+                            <p class="hero-subtitle">{{ block.data.subtitle }}</p>
+                          {% endif %}
+                          {% if block.data.button_text %}
+                            <div class="hero-button">
+                              {{ block.data.button_text }}
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </a>
+                  {% else %}
+                    <div class="hero-placeholder">
+                      <div class="hero-placeholder-content">
+                        <div class="hero-placeholder-icon">
+                          <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                          </svg>
+                        </div>
+                        <h2 class="hero-placeholder-title">Hero Banner</h2>
+                        <p class="hero-placeholder-text">أضف صورة للبانر الرئيسي</p>
+                      </div>
+                    </div>
+                  {% endif %}
+              </div>
+            </div>
+          {% endfor %}
         </div>
+          
+          <!-- Enhanced Navigation -->
+        {% if widget.data.show_navigation %}
+            <button class="hero-nav-prev" id="hero-prev">
+              <i class="fi fi-rr-angle-right text-gray-700 text-lg"></i>
+            </button>
+            <button class="hero-nav-next" id="hero-next">
+              <i class="fi fi-rr-angle-left text-gray-700 text-lg"></i>
+            </button>
+        {% endif %}
+          
+          <!-- Enhanced Pagination -->
+        {% if widget.data.show_pagination %}
+            <div class="swiper-pagination hero-pagination"></div>
+        {% endif %}
       </div>
-    </section>
+    </div>
+  {% else %}
+      <!-- Single Slide - Same Professional Styling -->
+    {% for block in widget.blocks %}
+        <div class="hero-single-slide">
+          {% if block.data.image and block.data.image.fileUrl %}
+            <a href="{{ block.data.link | default(widget.data.hero_link | default('#')) }}" 
+               class="hero-slide-link">
+              <div class="hero-image-container">
+              <img 
+                src="{{ block.data.image.fileUrl }}" 
+                alt="{{ block.data.alt | default(widget.data.hero_alt | default('Hero Banner')) }}" 
+                  loading="eager"
+                  class="hero-image"
+                />
+                <div class="hero-overlay"></div>
+              </div>
+              {% if block.data.title or block.data.subtitle or block.data.button_text %}
+                <div class="hero-content">
+                  {% if block.data.title %}
+                    <h1 class="hero-title">{{ block.data.title }}</h1>
+                  {% endif %}
+                  {% if block.data.subtitle %}
+                    <p class="hero-subtitle">{{ block.data.subtitle }}</p>
+                  {% endif %}
+                  {% if block.data.button_text %}
+                    <div class="hero-button">
+                      {{ block.data.button_text }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </a>
+          {% else %}
+            <div class="hero-placeholder">
+              <div class="hero-placeholder-content">
+                <div class="hero-placeholder-icon">
+                  <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h2 class="hero-placeholder-title">Hero Banner</h2>
+                <p class="hero-placeholder-text">أضف صورة للبانر الرئيسي</p>
+              </div>
+            </div>
+          {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</section>
+
+<style>
+/* ===== HERO BANNER PROFESSIONAL STYLES ===== */
+
+/* Container & Layout */
+.hero-container {
+  width: 100%;
+  padding: 0;
+}
+
+.hero-swiper-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.hero-slide-container,
+.hero-single-slide {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Fixed height for consistency */
+  overflow: hidden;
+}
+
+.hero-slide-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Image Container - Perfect Aspect Ratio */
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* White background instead of gray */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Removed hover effects */
+}
+
+/* Overlay for better content readability */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  opacity: 0;
+  /* Removed hover effects */
+}
+
+/* Content Overlay */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+  max-width: 80%;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+  font-family: 'Cairo', sans-serif;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-family: 'Cairo', sans-serif;
+  opacity: 0.9;
+}
+
+.hero-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Removed hover effects for buttons */
+
+/* Placeholder Styles */
+.hero-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* White background instead of gray */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #cbd5e1;
+}
+
+.hero-placeholder-content {
+  text-align: center;
+  color: #64748b;
+}
+
+.hero-placeholder-icon {
+  margin-bottom: 1rem;
+}
+
+.hero-placeholder-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+.hero-placeholder-text {
+  font-size: 1rem;
+  opacity: 0.7;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Enhanced Navigation - Like New Arrivals */
+.hero-nav-prev,
+.hero-nav-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827 !important;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hero-nav-prev {
+  right: 20px;
+}
+
+.hero-nav-next {
+  left: 20px;
+}
+
+.hero-nav-prev:hover,
+.hero-nav-next:hover {
+  background: #f9fafb;
+  border-color: #003033;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero-nav-prev:active,
+.hero-nav-next:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Enhanced Pagination */
+.hero-pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  margin: 0 6px;
+  transition: all 0.3s ease;
+}
+
+.hero-pagination .swiper-pagination-bullet-active {
+  background: #FF6B35;
+  transform: scale(1.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Mobile (up to 768px) - Modern & Professional */
+@media (max-width: 768px) {
+  /* Container adjustments - Full width on mobile */
+  .hero-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .hero-swiper-container {
+    border-radius: 0; /* No border radius for full width */
+    box-shadow: none; /* No shadow for full width */
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .hero-slide-container,
+  .hero-single-slide {
+    height: 300px; /* Optimized height for mobile */
+    border-radius: 0; /* No border radius for full width */
+  }
+  
+  /* Image container - perfect mobile sizing with full content display */
+  .hero-image-container {
+    background: #ffffff; /* White background */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .hero-image {
+    object-fit: contain !important; /* Show full image content without cropping */
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+  }
+  
+  /* Content adjustments */
+  .hero-content {
+    max-width: 90%;
+    padding: 0 1rem;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+  }
+  
+  .hero-button {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    border-radius: 25px;
+  }
+  
+  /* Navigation - mobile optimized with better design */
+  .hero-nav-prev,
+  .hero-nav-next {
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-nav-prev {
+    right: 8px;
+  }
+  
+  .hero-nav-next {
+    left: 8px;
+  }
+  
+  /* Pagination - positioned over the image */
+  .hero-pagination {
+    bottom: 16px;
+    z-index: 30;
+  }
+  
+  .hero-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+  }
+  
+  /* Placeholder improvements */
+  .hero-placeholder {
+    border-radius: 8px;
+    background: #ffffff; /* White background */
+  }
+  
+  .hero-placeholder-title {
+    font-size: 1.25rem;
+  }
+  
+  .hero-placeholder-text {
+    font-size: 0.9rem;
+  }
+  
+  /* Section spacing - mobile optimized */
+  .hero-section {
+    padding: 0;
+    margin-bottom: 0.25rem;
+    margin-top: 0;
+  }
+  
+  /* Remove extra padding on mobile */
+  .hero-section .hero-container {
+    padding: 0;
+  }
+  
+  /* Enhanced mobile touch interactions */
+  .hero-swiper-container {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* تحسين أسهم التنقل للهواتف المحمولة */
+  .hero-nav-prev, .hero-nav-next {
+    display: flex !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+  
+  .hero-nav-prev {
+    right: 12px !important;
+    left: auto !important;
+  }
+  
+  .hero-nav-next {
+    left: 12px !important;
+    right: auto !important;
+  }
+  
+  /* تحسين نقاط التنقل للهواتف المحمولة */
+  .hero-pagination {
+    display: block !important;
+    bottom: 16px !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  
+  .hero-pagination .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 4px !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  .hero-pagination .swiper-pagination-bullet-active {
+    background: #FF6B35 !important;
+    transform: scale(1.2) !important;
+  }
+  
+  /* Removed mobile-specific animations */
+}
+
+/* Tablet (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-slide-container,
+  .hero-single-slide {
+    height: 400px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* Desktop (1025px and up) */
+@media (min-width: 1025px) {
+  .hero-slide-container,
+  .hero-single-slide {
+    height: 500px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Large Desktop (1200px and up) */
+@media (min-width: 1200px) {
+  .hero-slide-container,
+  .hero-single-slide {
+    height: 600px;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== SWIPER CUSTOMIZATION ===== */
+.hero-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fade Effect Enhancement */
+.hero-swiper .swiper-slide-active .hero-image {
+  transform: scale(1);
+}
+
+/* Loading Animation */
+.hero-image {
+  opacity: 0;
+  animation: fadeInImage 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>

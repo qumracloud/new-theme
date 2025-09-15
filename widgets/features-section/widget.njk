@@ -1,0 +1,32 @@
+<!-- Features Section -->
+<section class="py-6 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ widget.data.section_title | default('مميزاتنا') }}</h2>
+    </div>
+    
+    {% if widget.blocks.length > 0 %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {% for block in widget.blocks %}
+        <div class="text-center">
+          <div class="mb-4">
+            {% if block.data.icon and block.data.icon.fileUrl %}
+              <img 
+                src="{{ block.data.icon.fileUrl }}" 
+                alt="{{ block.data.alt | default(block.data.title) }}"
+                class="w-16 h-16 mx-auto object-contain"
+              />
+            {% else %}
+              <div class="w-16 h-16 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
+                <span class="text-2xl text-gray-400">⭐</span>
+              </div>
+            {% endif %}
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ block.data.title }}</h3>
+          <p class="text-gray-600 leading-relaxed">{{ block.data.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

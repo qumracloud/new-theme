@@ -1,28 +1,90 @@
 {
-  "name": "Service Features",
-  "description": "عرض 3 مميزات رئيسية للخدمة أو المتجر",
-  "data": [
+  "name": "Special Offers Section",
+  "description": "قسم العروض والخصومات الحصرية",
+  "settings": {
+    "section_title": {
+      "type": "string",
+      "label": "عنوان القسم",
+      "default": "خصومات وعروض حصرية"
+    },
+    "view_all_link": {
+      "type": "string",
+      "label": "رابط عرض الكل",
+      "default": "#"
+    }
+  },
+  "blocks": {
+    "offerItem": {
+      "name": "عرض",
+      "settings": {
+        "image": {
+          "type": "media",
+          "label": "صورة العرض",
+          "default": ""
+        },
+        "link": {
+          "type": "string",
+          "label": "رابط العرض",
+          "default": "#"
+        },
+        "alt": {
+          "type": "string",
+          "label": "النص البديل للصورة",
+          "default": "عرض"
+        },
+        "title": {
+          "type": "string",
+          "label": "عنوان العرض (اختياري)",
+          "default": ""
+        },
+        "description": {
+          "type": "string",
+          "label": "وصف العرض (اختياري)",
+          "default": ""
+        }
+      }
+    }
+  },
+  "presets": [
     {
-      "key": "features",
-      "type": "array",
-      "label": "قائمة المميزات",
-      "default": [
+      "category": "homepage",
+      "name": "🔥 العروض الحصرية",
+      "blocks": [
         {
-          "icon": "🚀",
-          "title": "سرعة في التوصيل",
-          "description": "نوصلك في أقل من 48 ساعة داخل المدن الكبرى"
+          "block": "offerItem",
+          "name": "العرض الأول",
+          "settings": {
+            "image": "",
+            "link": "#",
+            "alt": "العرض الأول",
+            "title": "",
+            "description": ""
+          }
         },
         {
-          "icon": "🔒",
-          "title": "دفع آمن",
-          "description": "نستخدم بوابات دفع موثوقة لحماية بياناتك"
+          "block": "offerItem",
+          "name": "العرض الثاني",
+          "settings": {
+            "image": "",
+            "link": "#",
+            "alt": "العرض الثاني",
+            "title": "",
+            "description": ""
+          }
         },
         {
-          "icon": "💬",
-          "title": "دعم فني سريع",
-          "description": "دعم متواصل لحل مشاكلك عبر الدردشة"
+          "block": "offerItem",
+          "name": "العرض الثالث",
+          "settings": {
+            "image": "",
+            "link": "#",
+            "alt": "العرض الثالث",
+            "title": "",
+            "description": ""
+          }
         }
       ]
     }
   ]
 }
+

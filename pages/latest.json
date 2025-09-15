@@ -5,7 +5,8 @@
     {
       "name": "products",
       "widget": "products",
-      "data": {}
+      "settings": {}
     }
   ]
 }
+

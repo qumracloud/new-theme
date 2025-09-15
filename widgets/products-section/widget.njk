@@ -1,45 +1,52 @@
-<!-- Featured Products -->
-<section class="products-section">
-  <div class="container">
-    {% ui "button.njk", produtt='sdf',cart='wer' %}
-    <div class=" flex flex-col gap-4 ">
-      <div class="grid grid-cols-4 gap-x-6 gap-y-8">
-        <!-- Product Card 1 -->
+<section class="py-6 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+    {% if widget.data.products | length > 0 %}
+    <div class="flex flex-col gap-4 sm:gap-6 md:gap-8">
+      <!-- Section Header -->
+      <div class="text-center mb-4 sm:mb-6 md:mb-8">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 font-cairo">منتجاتنا المميزة</h2>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 font-cairo">اكتشف تشكيلة واسعة من المنتجات عالية الجودة</p>
+      </div>
+      
+      <!-- Products - Mobile horizontal list showing 2 cards -->
+      <div class="md:hidden -mx-4 px-4">
+        <div class="flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide mobile-tight">
+          {% for product in widget.data.products %}
+          <div class="min-w-[50%] snap-start">
+            {%ui "product-card.njk" ,product=product ,variant='index-swiper'%}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Products Grid - Desktop/Tablets -->
+      <div class="hidden md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {% for product in widget.data.products %}
-        <a  href="/product/{{ product.slug }}" class=" pb-4 flex flex-col gap-3 rounded-lg shadow-[0px_0px_10px_0px_#E4E4E4] ">
-          <div class="  relative h-[160px]">
-            <img src={{product.images[0].fileUrl}} alt="product" class="rounded-t-lg w-full h-full object-cover">
-          </div>
-          <div class=" flex-col w-full flex gap-4 px-3 ">
-            <div class=" flex flex-col gap-1">
-              <p class="  font-bold text-[#0D0D0D]">{{ product.title | truncate(30) }}
-              </p>
-              <div class=" flex items-center gap-[6px]">
-                <div class=" flex items-center gap-1">
-                  <i class="fi flex items-center text-[10px] fi-rr-star"></i>
-                  <i class="fi flex items-center text-[10px] fi-rr-star"></i>
-                  <i class="fi flex items-center text-[10px] fi-rr-star"></i>
-                  <i class="fi flex items-center text-[10px] fi-rr-star"></i>
-                </div>
-                <span>3.00</span>
-              </div>
-              <div class=" flex items-center gap-1">
-                <p class=" text-primary">{{product.pricing.price}} ج.م</p>
-                <p class=" text-[#868584]  text-decoration-line-through  text-sm">{{product.pricing.compareAtPrice}} ج.م</p>
-              </div>
-              <button class=" text-primary justify-center border border-primary flex items-center gap-2 rounded-full py-[9px] px-4">
-                <i class="fi flex items-center fi-rr-shopping-cart"></i>
-                <p>اضافة للسلة</p>
-              </button>
-            </div>
-          </div>
-        </a>
+        {%ui "product-card.njk" ,product=product ,showModal=true%}
         {% endfor %}
       </div>
-      <a  href="/products" class=" flex  self-end w-max gap-2 items-center ">
-        <span class=" text-primary  text-end"> عرض المزيد </span>
-        <i class="fi flex items-center fi-rr-angle-double-small-left text-primary "></i>
-      </a>
+      
+      <!-- View More Button -->
+      <div class="text-center mt-4 sm:mt-6 md:mt-8">
+        <a href="/collections" class="inline-flex items-center gap-3 bg-[#003033] hover:bg-[#004d4d] text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 font-cairo">
+          <span>عرض المزيد من المنتجات</span>
+          <i class="fi fi-rr-angle-double-small-left text-xl"></i>
+        </a>
+      </div>
     </div>
+    {% else %}
+    {%ui "empty.njk" %}
+    {% endif %}
   </div>
 </section>
+
+<style>
+/* Mobile Padding Fix */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+</style>
+
