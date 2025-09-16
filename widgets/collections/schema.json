@@ -7,42 +7,7 @@
       "name": "products",
       "description": "قائمة المنتجات",
       "icon": "products",
-      "settings": [
-        {
-          "name": "title",
-          "type": "text",
-          "label": "العنوان",
-          "default": "المنتجات المميزة"
-        },
-        {
-          "name": "title",
-          "type": "collection",
-          "label": "العنوان",
-          "default": "المنتجات المميزة"
-        },
-        {
-          "name": "products",
-          "type": "array",
-          "label": "المنتجات",
-          "items": {
-            "type": "object",
-            "properties": {
-              "image": {
-                "type": "image",
-                "label": "صورة المنتج"
-              },
-              "title": {
-                "type": "text",
-                "label": "عنوان المنتج"
-              },
-              "price": {
-                "type": "text",
-                "label": "سعر المنتج"
-              }
-            }
-          }
-        }
-      ]
+      "settings": {}
     }
   }
 }
