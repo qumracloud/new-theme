@@ -1,7 +1,7 @@
 {
   "name": "Service Features",
   "description": "عرض 3 مميزات رئيسية للخدمة أو المتجر",
-  "settings": [
+  "data": [
     {
       "key": "features",
       "type": "array",

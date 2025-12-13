@@ -1,12 +1,7 @@
 {
   "layout": "layout",
   "title": "الصفحة الرئيسية",
-  "widgets": [
-    {
-      "name": "collection",
-      "widget": "collection",
-      "settings": {}
-    }
-  ]
+  "widgets": []
+
   
 }

@@ -1,13 +1,5 @@
 {
   "layout": "layout",
   "title": "صفحة السلة",
-  "widgets": [
-    {
-      "name": "Service Features",
-      "widget": "cart",
-      "settings": {
-       
-      }
-    }
-  ]
+  "widgets": []
 }
