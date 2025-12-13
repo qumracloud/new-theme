@@ -1,4 +1,9 @@
 {
     "title": "Header Group",
-    "widgets": []
+    "widgets": [
+        {
+            "name": "header",
+            "widget": "header"
+        }
+    ]
 }

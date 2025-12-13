@@ -1,13 +1,5 @@
-<section id="{{ widget.id }}" class="features-section" style="padding: 60px 0; background-color: #ffffff;">
-          <div class="container" style="max-width: 1100px; margin: 0 auto;">
-            <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
-              {% for feature in widget.data.features %}
-                <div style="flex: 0 1 300px; background: #f7f7f7; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s;">
-                  <div style="font-size: 36px; margin-bottom: 16px;">{{ feature.icon }}</div>
-                  <h3 style="font-size: 20px; margin-bottom: 8px; color: #222;">{{ feature.title }}</h3>
-                  <p style="font-size: 16px; color: #555;">{{ feature.description }}</p>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </section>
+<section class="welcome">
+  <h1>{{widget.data.title}}</h1>
+  <p>{{widget.data.description}}</p>
+  <button id="get-started">{{widget.data.buttonText}}</button>
+</section>

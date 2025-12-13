@@ -6,10 +6,7 @@
     "widgets": [
         {
             "name": "footer",
-            "widget": "footer",
-            "settings": {
-                "title": "ok"
-            }
+            "widget": "footer"
         }
     ]
 }

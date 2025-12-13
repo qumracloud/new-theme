@@ -1,28 +1,29 @@
 {
-  "name": "Service Features",
-  "description": "عرض 3 مميزات رئيسية للخدمة أو المتجر",
-  "data": [
-    {
-      "key": "features",
-      "type": "array",
-      "label": "قائمة المميزات",
-      "default": [
-        {
-          "icon": "🚀",
-          "title": "سرعة في التوصيل",
-          "description": "نوصلك في أقل من 48 ساعة داخل المدن الكبرى"
-        },
-        {
-          "icon": "🔒",
-          "title": "دفع آمن",
-          "description": "نستخدم بوابات دفع موثوقة لحماية بياناتك"
-        },
-        {
-          "icon": "💬",
-          "title": "دعم فني سريع",
-          "description": "دعم متواصل لحل مشاكلك عبر الدردشة"
-        }
-      ]
+  "name": "welcome",
+  "settings": {
+    "title": {
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "Main Heading"
+      },
+      "default": "Welcome to Qumra"
+    },
+    "description": {
+      "type": "textarea",
+      "label": {
+        "ar": "الوصف",
+        "en": "Description"
+      },
+      "default": "Build your online store easily, manage orders, and grow your business."
+    },
+    "buttonText": {
+      "type": "text",
+      "label": {
+        "ar": "نص الزر",
+        "en": "Button Text"
+      },
+      "default": "Get Started"
     }
-  ]
+  }
 }

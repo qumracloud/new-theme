@@ -3,26 +3,19 @@
   "title": "الصفحة الرئيسية",
   "widgets": [
     {
-      "name": "Service Features",
+      "name": "welcome",
+      "widget": "welcome"
+    },
+    {
+      "name": "features",
+      "widget": "features"
+    },
+    {
+      "name": "welcome",
       "widget": "welcome",
-      "data": {
-        "features": [
-          {
-            "icon": "🚀",
-            "title": "سرعة في التوصيل",
-            "description": "نوصلك في أقل من 48 ساعة داخل المدن الكبرى"
-          },
-          {
-            "icon": "🔒",
-            "title": "دفع آمن",
-            "description": "نستخدم بوابات دفع موثوقة لحماية بياناتك"
-          },
-          {
-            "icon": "💬",
-            "title": "دعم فني سريع",
-            "description": "دعم متواصل لحل مشاكلك عبر الدردشة"
-          }
-        ]
+      "settings": {
+        "title": "Welcome to Qumra 2",
+        "description": "Build your online store easily, manage orders, and grow your business with a fast and secure platform."
       }
     }
   ]
