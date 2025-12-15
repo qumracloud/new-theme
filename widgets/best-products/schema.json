@@ -1,0 +1,12 @@
+{
+  "name": "best-products",
+  "settings": {
+    "products": {
+      "type": "products",
+      "label": {
+        "ar": "المنتجات",
+        "en": "Products"
+      }
+    }
+  }
+}

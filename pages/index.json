@@ -1,6 +1,5 @@
 {
   "layout": "layout",
-  "title": "الصفحة الرئيسية",
   "widgets": [
     {
       "name": "welcome",
@@ -17,6 +16,34 @@
         "title": "Welcome to Qumra 2",
         "description": "Build your online store easily, manage orders, and grow your business with a fast and secure platform."
       }
+    },
+    {
+      "name": "best-product",
+      "widget": "best-product"
+    },
+    {
+      "name": "best-collections",
+      "widget": "best-collections"
+    },
+    {
+      "name": "best-products",
+      "widget": "best-products"
+    },
+    {
+      "name": "best-article",
+      "widget": "best-article"
+    },
+    {
+      "name": "best-articles",
+      "widget": "best-articles"
+    },
+    {
+      "name": "blog-articles",
+      "widget": "blog-articles"
+    },
+    {
+      "name": "blog",
+      "widget": "blog"
     }
   ]
 }
